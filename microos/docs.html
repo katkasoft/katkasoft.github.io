@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - MicroOS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-microchip"></i> MicroOS</h1>
+            <p class="subtitle">A minimalist Linux-based operating system</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="download.html"><i class="fas fa-download"></i> Download</a></li>
+                <li><a href="docs.html" class="active"><i class="fas fa-book"></i> Documentation</a></li>
+                <li><a href="commands.html"><i class="fas fa-terminal"></i> Commands</a></li>
+                <li><a href="https://github.com/katkasoft/MicroOS" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section class="docs-hero">
+                <h2>MicroOS Documentation</h2>
+                <p>Complete guide to using and understanding MicroOS</p>
+            </section>
+
+            <div class="docs-container">
+                <aside class="docs-sidebar">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#architecture">System Architecture</a></li>
+                        <li><a href="#boot-process">Boot Process</a></li>
+                        <li><a href="#file-structure">File Structure</a></li>
+                        <li><a href="#terminal">Terminal Usage</a></li>
+                        <li><a href="#networking">Networking</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </aside>
+                <article class="docs-content">
+                    <section id="overview">
+                        <h3>Overview</h3>
+                        <p>MicroOS is a minimal Linux distribution built for efficiency and speed. It consists of:</p>
+                        <ul>
+                            <li>Linux kernel 6.18.5-arch1-1</li>
+                            <li>GRUB bootloader</li>
+                            <li>Custom init system written in C</li>
+                            <li>Custom terminal shell written in Rust</li>
+                            <li>Essential system utilities written in C/C++</li>
+                        </ul>
+                        <p>The entire system is designed to run in memory-constrained environments while providing basic functionality for system administration and file management.</p>
+                    </section>
+                    <section id="architecture">
+                        <h3>System Architecture</h3>
+                        <p>MicroOS follows a monolithic kernel architecture with a minimal userland:</p>
+                        <div class="architecture-diagram">
+                            <div class="arch-layer">
+                                <h4>Applications</h4>
+                                <p>User utilities: file managers, system tools</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Terminal Shell</h4>
+                                <p>Rust-based interactive shell with command execution</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Init System</h4>
+                                <p>Custom init daemon managing process lifecycle</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Linux Kernel</h4>
+                                <p>Linux 6.18.5 with essential drivers and subsystems</p>
+                            </div>
+                            <div class="arch-layer">
+                                <h4>Hardware</h4>
+                                <p>x86_64 compatible processors and peripherals</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="boot-process">
+                        <h3>Boot Process</h3>
+                        <ol>
+                            <li><strong>BIOS/UEFI</strong> loads GRUB bootloader</li>
+                            <li><strong>GRUB</strong> loads Linux kernel and initramfs</li>
+                            <li><strong>Kernel</strong> initializes hardware and mounts root filesystem</li>
+                            <li><strong>Init</strong> process (PID 1) starts:
+                                <ul>
+                                    <li>Mounts /proc, /sys, /dev filesystems</li>
+                                    <li>Sets up console</li>
+                                    <li>Launches the terminal shell</li>
+                                </ul>
+                            </li>
+                            <li><strong>Terminal</strong> provides interactive command interface</li>
+                        </ol>
+                        <p>Total boot time is typically under 10 seconds on most hardware.</p>
+                    </section>
+                    <section id="file-structure">
+                        <h3>File System Structure</h3>
+                        <pre class="file-tree">
+/
+├── bin/           # Essential user binaries
+├── sbin/          # System binaries (init)
+├── etc/           # Configuration files
+│   ├── help.txt
+│   └── microos-ver.txt
+├── dev/           # Device files
+├── proc/          # Process information
+├── sys/           # Kernel objects
+├── tmp/           # Temporary files
+│   ├── buffer
+│   └── copy_filename.txt
+└── usr/
+    ├── bin/       # Additional binaries
+    └── sbin/      # Additional system binaries</pre>
+                        <p>The root filesystem is loaded into memory (initramfs), providing fast access but volatile storage. For persistence, use the optional data partition.</p>
+                    </section>
+                    <section id="terminal">
+                        <h3>Terminal Usage</h3>
+                        <p>The MicroOS terminal provides a simple command-line interface with:</p>
+                        <ul>
+                            <li>Command history (with arrow keys if TTY supported)</li>
+                            <li>Tab completion (limited)</li>
+                            <li>Signal handling (Ctrl+C to interrupt)</li>
+                            <li>Built-in commands: clear, exit, pcd, gtd, help</li>
+                        </ul>
+                        <p>The terminal searches for executables in /bin, /sbin, /usr/bin, /usr/sbin directories.</p>
+                    </section>
+                    <section id="networking">
+                        <h3>Networking</h3>
+                        <p>MicroOS currently does not include networking capabilities in the base system. This is a design choice to maintain minimal size. Network functionality can be added by:</p>
+                        <ol>
+                            <li>Compiling kernel with network drivers</li>
+                            <li>Adding network utilities (ifconfig, ping, etc.)</li>
+                            <li>Implementing DHCP client</li>
+                        </ol>
+                        <p>See the GitHub repository for instructions on adding networking support.</p>
+                    </section>
+                    <section id="troubleshooting">
+                        <h3>Troubleshooting</h3>
+                        <div class="troubleshoot-item">
+                            <h4>System won't boot</h4>
+                            <p><strong>Solution:</strong> Verify USB creation process. Use <code>dd</code> with correct device name. Check BIOS boot order.</p>
+                        </div>
+                        <div class="troubleshoot-item">
+                            <h4>No TTY support (arrow keys don't work)</h4>
+                            <p><strong>Solution:</strong> Kernel lacks proper TTY drivers for your hardware. Basic input still works.</p>
+                        </div>
+                        <div class="troubleshoot-item">
+                            <h4>Command not found</h4>
+                            <p><strong>Solution:</strong> Check command spelling. Use <code>sd /bin</code> to see available commands.</p>
+                        </div>
+                        <div class="troubleshoot-item">
+                            <h4>Permission denied</h4>
+                            <p><strong>Solution:</strong> Use <code>chperm</code> to modify permissions if needed.</p>
+                        </div>
+                        <div class="troubleshoot-item">
+                            <h4>Out of memory</h4>
+                            <p><strong>Solution:</strong> Ensure system has at least 125MB RAM. Close unnecessary processes with <code>stop</code> command.</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </main>
+
+        <footer>
+            <p>MicroOS &copy; 2026 - katkasoft</p>
+            <p>Linux is a registered trademark of Linus Torvalds</p>
+        </footer>
+    </div>
+</body>
+</html>

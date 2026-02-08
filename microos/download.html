@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - MicroOS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-microchip"></i> MicroOS</h1>
+            <p class="subtitle">A minimalist Linux-based operating system</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="download.html" class="active"><i class="fas fa-download"></i> Download</a></li>
+                <li><a href="docs.html"><i class="fas fa-book"></i> Documentation</a></li>
+                <li><a href="commands.html"><i class="fas fa-terminal"></i> Commands</a></li>
+                <li><a href="https://github.com/katkasoft/MicroOS" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section class="download-hero">
+                <h2>Download MicroOS</h2>
+                <p>Get the latest stable release of MicroOS. The ISO image contains a complete, ready-to-use system.</p>
+            </section>
+            <section class="download-options">
+                <div class="download-card">
+                    <div class="download-header">
+                        <i class="fas fa-download fa-2x"></i>
+                        <h3>Latest Release</h3>
+                    </div>
+                    <div class="download-info">
+                        <p><strong>Version:</strong> 0.1</p>
+                        <p><strong>Release Date:</strong>Febrary 2026</p>
+                        <p><strong>Size:</strong> 37 MB</p>
+                        <p><strong>Architecture:</strong> x86_64</p>
+                        <p><strong>SHA256:</strong> <code class="hash">ae8fdfbf0fb6876e9f669cb92bfe34b7a27ed0b3a7e32a08d8341e28b86d9f22</code></p>
+                    </div>
+                    <div class="download-links">
+                        <a href="iso/microos-v0.1.iso" class="btn-download" download>
+                            <i class="fas fa-file-archive"></i> Download ISO (37 MB)
+                        </a>
+                        <div class="verification-instructions">
+                            <h4><i class="fas fa-shield-alt"></i> Verify Download:</h4>
+                            <pre><code># Linux/macOS
+sha256sum microos-v0.1.iso
+# Should output: ae8fdfbf0fb6876e9f669cb92bfe34b7a27ed0b3a7e32a08d8341e28b86d9f22
+
+# Windows (PowerShell)
+Get-FileHash microos-v0.1.iso -Algorithm SHA256</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirements">
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li><i class="fas fa-memory"></i> <strong>RAM:</strong> 125 MB minimum</li>
+                        <li><i class="fas fa-hdd"></i> <strong>Storage:</strong> 40 MB minimum</li>
+                        <li><i class="fas fa-microchip"></i> <strong>Architecture:</strong> x86_64 (64-bit)</li>
+                        <li><i class="fas fa-usb"></i> <strong>Boot Media:</strong> USB drive (50Mb+)</li>
+                        <li><i class="fas fa-desktop"></i> <strong>Graphics:</strong> Text mode only</li>
+                        <li><i class="fas fa-microchip"></i> <strong>CPU:</strong> x86_64 compatible (2005+)</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="installation">
+                <h2><i class="fas fa-rocket"></i> Installation Guide</h2>
+                <div class="install-step">
+                    <h3>1. Create Bootable USB</h3>
+                    <div class="code-block">
+                        <h4>Linux/macOS:</h4>
+                        <pre><code># Find your USB device
+lsblk
+
+# Write ISO (REPLACE /dev/sdX with your device!)
+sudo dd if=microos-v0.1.iso of=/dev/sdX bs=4M status=progress
+sync</code></pre>
+                        <p class="warning"><i class="fas fa-exclamation-triangle"></i> <strong>WARNING:</strong> Replace /dev/sdX with your USB device (e.g., /dev/sdb). Wrong device will ERASE YOUR DATA!</p>
+                    </div>
+                    <div class="code-block">
+                        <h4>Windows:</h4>
+                        <p>Use one of these tools:</p>
+                        <ul class="tool-list">
+                            <li><a href="https://rufus.ie/" target="_blank"><i class="fas fa-external-link-alt"></i> Rufus</a> (Recommended)</li>
+                            <li><a href="https://www.balena.io/etcher/" target="_blank"><i class="fas fa-external-link-alt"></i> Balena Etcher</a> (User-friendly)</li>
+                            <li><a href="https://sourceforge.net/projects/win32diskimager/" target="_blank"><i class="fas fa-external-link-alt"></i> Win32 Disk Imager</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="install-step">
+                    <h3>2. Boot from USB</h3>
+                    <div class="boot-instructions">
+                        <p><strong>Restart your computer and:</strong></p>
+                        <ul>
+                            <li>Press <kbd>F12</kbd>, <kbd>F2</kbd>, <kbd>ESC</kbd>, or <kbd>DEL</kbd> during startup</li>
+                            <li>Select your USB drive from boot menu</li>
+                            <li>If it doesn't boot, check BIOS/UEFI settings:
+                                <ul>
+                                    <li>Enable "Legacy Boot" or "CSM" if available</li>
+                                    <li>Disable "Secure Boot"</li>
+                                    <li>Set USB as first boot device</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="install-step">
+                    <h3>3. Using MicroOS</h3>
+                    <p>MicroOS will boot directly to the terminal interface in about 5-10 seconds. No installation required!</p>
+                    <div class="usage-tips">
+                        <h4>First Steps:</h4>
+                        <ol>
+                            <li>Type <code>help</code> or <code>commands</code> to see available commands</li>
+                            <li>Use <code>sd</code> to list directory contents</li>
+                            <li>Use <code>os-info</code> to see system information</li>
+                            <li>Use <code>sys-stat</code> to check resource usage</li>
+                            <li>Type <code>poweroff</code> to shut down</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="install-step">
+                    <h3>4. Persistent Storage (Optional)</h3>
+                    <p>For saving files across reboots:</p>
+                    <div class="code-block">
+                        <h4>On Linux:</h4>
+                        <pre><code># After creating bootable USB
+sudo cfdisk /dev/sdX
+# Create new partition, type: Linux (83)
+sudo mkfs.ext4 /dev/sdX2 -L MICROOS_DATA</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section class="troubleshooting">
+                <h2><i class="fas fa-wrench"></i> Troubleshooting</h2>
+                <div class="troubleshoot-grid">
+                    <div class="troubleshoot-item">
+                        <h4><i class="fas fa-exclamation-circle"></i> Won't Boot</h4>
+                        <p>Try different USB port (USB 2.0 often works better). Disable Secure Boot in BIOS.</p>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4><i class="fas fa-keyboard"></i> Keyboard Not Working</h4>
+                        <p>Try PS/2 keyboard if available. USB keyboards may need different port.</p>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4><i class="fas fa-tv"></i> Black/Blank Screen</h4>
+                        <p>Try adding <code>nomodeset</code> to kernel parameters in GRUB (press 'e' at boot).</p>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4><i class="fas fa-bug"></i> Kernel Panic</h4>
+                        <p>Check ISO integrity with SHA256. Try on different hardware.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="source-code">
+                <h2><i class="fas fa-code"></i> Source Code</h2>
+                <p>MicroOS is 100% open source. The complete source code is available on GitHub:</p>
+                <div class="github-link">
+                    <a href="https://github.com/katkasoft/MicroOS" class="btn-github" target="_blank">
+                        <i class="fab fa-github"></i> View Source on GitHub
+                    </a>
+                </div>
+                <p class="note"><i class="fas fa-info-circle"></i> The repository contains only the <code>source/</code> directory. Pre-built ISO images are provided for convenience.</p>
+            </section>
+            <section class="contribute">
+                <h2><i class="fas fa-hands-helping"></i> Contribute</h2>
+                <p>Found a bug? Have suggestions?</p>
+                <div class="contribute-links">
+                    <a href="https://github.com/katkasoft/MicroOS/issues" class="btn-secondary" target="_blank">
+                        <i class="fas fa-bug"></i> Report Issue
+                    </a>
+                    <a href="https://github.com/katkasoft/MicroOS/discussions" class="btn-secondary" target="_blank">
+                        <i class="fas fa-comments"></i> Discussion
+                    </a>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>MicroOS &copy; 2024 - katkasoft</p>
+            <p>Linux is a registered trademark of Linus Torvalds</p>
+            <p class="footer-note">ISO Updated: October 2024 | SHA256: ae8fdfbf0fb6876e9f669cb92bfe34b7a27ed0b3a7e32a08d8341e28b86d9f22</p>
+        </footer>
+    </div>
+</body>
+</html>

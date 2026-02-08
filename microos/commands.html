@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commands - MicroOS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-microchip"></i> MicroOS</h1>
+            <p class="subtitle">A minimalist Linux-based operating system</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="download.html"><i class="fas fa-download"></i> Download</a></li>
+                <li><a href="docs.html"><i class="fas fa-book"></i> Documentation</a></li>
+                <li><a href="commands.html" class="active"><i class="fas fa-terminal"></i> Commands</a></li>
+                <li><a href="https://github.com/katkasoft/MicroOS" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section class="commands-hero">
+                <h2>MicroOS Command Reference</h2>
+                <p>Complete documentation for all available commands in MicroOS v0.1</p>
+                <p class="quick-help">Type <code>help</code> or <code>commands</code> in the MicroOS terminal to see this list.</p>
+            </section>
+            <div class="commands-container">
+                <aside class="commands-sidebar">
+                    <h3>Command Categories</h3>
+                    <ul>
+                        <li><a href="#terminal">Terminal Commands</a></li>
+                        <li><a href="#system">System Commands</a></li>
+                        <li><a href="#info">Information Commands</a></li>
+                        <li><a href="#files">File Operations</a></li>
+                        <li><a href="#directories">Directory Operations</a></li>
+                        <li><a href="#processes">Process Commands</a></li>
+                    </ul>
+                </aside>
+                <article class="commands-content">
+                    <section id="terminal" class="command-section">
+                        <h3><i class="fas fa-terminal"></i> Terminal Commands</h3>
+                        <div class="command-card">
+                            <h4>clear</h4>
+                            <p class="command-syntax">clear</p>
+                            <p class="command-desc">Clears the terminal screen.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>clear</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>exit</h4>
+                            <p class="command-syntax">exit</p>
+                            <p class="command-desc">Exits the terminal session. This will shut down MicroOS as the terminal is the main process.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>exit</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>pcd</h4>
+                            <p class="command-syntax">pcd</p>
+                            <p class="command-desc">Prints the current working directory.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>pcd</code>
+                                <strong>Output:</strong> <code>/home/user</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>gtd</h4>
+                            <p class="command-syntax">gtd [path]</p>
+                            <p class="command-desc">Changes the current directory to the specified path.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>gtd /tmp</code>
+                                <strong>Output:</strong> Changes directory to /tmp
+                            </div>
+                        </div>
+                    </section>
+                    <section id="system" class="command-section">
+                        <h3><i class="fas fa-cog"></i> System Commands</h3>
+                        <div class="command-card">
+                            <h4>poweroff</h4>
+                            <p class="command-syntax">poweroff</p>
+                            <p class="command-desc">Safely powers off the computer. Calls sync() to flush filesystem caches before shutdown.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>poweroff</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>restart</h4>
+                            <p class="command-syntax">restart</p>
+                            <p class="command-desc">Restarts the computer.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>restart</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>mount</h4>
+                            <p class="command-syntax">mount [device] [mount_point]</p>
+                            <p class="command-desc">Mounts a filesystem. Currently supports ext4 filesystems.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>mount /dev/sda1 /mnt</code>
+                                <strong>Output:</strong> Mounts /dev/sda1 at /mnt
+                            </div>
+                        </div>
+                    </section>
+                    <section id="info" class="command-section">
+                        <h3><i class="fas fa-info-circle"></i> Information Commands</h3>
+                        <div class="command-card">
+                            <h4>sys-stat</h4>
+                            <p class="command-syntax">sys-stat [options]</p>
+                            <p class="command-desc">Displays system resource usage statistics.</p>
+                            <div class="command-options">
+                                <strong>Options:</strong>
+                                <ul>
+                                    <li><code>-r, --ram</code>: Show only RAM usage</li>
+                                    <li><code>-c, --cpu</code>: Show only CPU usage</li>
+                                    <li><code>-d, --disk</code>: Show only disk usage</li>
+                                    <li><code>-u, --uptime</code>: Show only system uptime</li>
+                                    <li><code>--help</code>: Display help information</li>
+                                </ul>
+                            </div>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>sys-stat -c</code>
+                                <strong>Output:</strong> <code>45%</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>os-info</h4>
+                            <p class="command-syntax">os-info [options]</p>
+                            <p class="command-desc">Displays operating system and kernel information.</p>
+                            <div class="command-options">
+                                <strong>Options:</strong>
+                                <ul>
+                                    <li><code>-v, --version</code>: Show only MicroOS version</li>
+                                    <li><code>-k, --kernel</code>: Show only kernel information</li>
+                                    <li><code>--help</code>: Display help information</li>
+                                </ul>
+                            </div>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>os-info -k</code>
+                                <strong>Output:</strong> <code>Linux 6.18.5-arch1-1</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>hw-info</h4>
+                            <p class="command-syntax">hw-info [options]</p>
+                            <p class="command-desc">Displays hardware information.</p>
+                            <div class="command-options">
+                                <strong>Options:</strong>
+                                <ul>
+                                    <li><code>-c, --cpu</code>: Show only CPU model</li>
+                                    <li><code>-r, --ram</code>: Show only total RAM</li>
+                                    <li><code>-d, --disk</code>: Show only total disk capacity</li>
+                                    <li><code>--help</code>: Display help information</li>
+                                </ul>
+                            </div>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>hw-info -c</code>
+                                <strong>Output:</strong> <code>Intel(R) Core(TM) i5-XXXX CPU @ X.XXGHz</code>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="files" class="command-section">
+                        <h3><i class="fas fa-file"></i> File Operations</h3>
+                        <div class="command-card">
+                            <h4>create file</h4>
+                            <p class="command-syntax">create file [filename]</p>
+                            <p class="command-desc">Creates a new empty file.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>create file document.txt</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>read</h4>
+                            <p class="command-syntax">read [filename]</p>
+                            <p class="command-desc">Displays the contents of a file.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>read document.txt</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>write</h4>
+                            <p class="command-syntax">write [filename] [options]</p>
+                            <p class="command-desc">Interactive file editor. Type 'q' to exit.</p>
+                            <div class="command-options">
+                                <strong>Options:</strong>
+                                <ul>
+                                    <li><code>-a, --append</code>: Append to file instead of overwriting</li>
+                                    <li><code>--help</code>: Display help information</li>
+                                </ul>
+                            </div>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>write notes.txt -a</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>copy</h4>
+                            <p class="command-syntax">copy [filename]</p>
+                            <p class="command-desc">Copies a file to the clipboard (temporary buffer).</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>copy document.txt</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>paste</h4>
+                            <p class="command-syntax">paste [destination_path]</p>
+                            <p class="command-desc">Pastes a file from clipboard to specified location.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>paste /home/user/</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>cut</h4>
+                            <p class="command-syntax">cut [filename]</p>
+                            <p class="command-desc">Cuts a file (copies to clipboard and deletes original).</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>cut document.txt</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>rename</h4>
+                            <p class="command-syntax">rename [oldname] [newname]</p>
+                            <p class="command-desc">Renames a file.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>rename old.txt new.txt</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>del</h4>
+                            <p class="command-syntax">del [filename]</p>
+                            <p class="command-desc">Deletes a file.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>del temporary.txt</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>moveto</h4>
+                            <p class="command-syntax">moveto [file] [destination]</p>
+                            <p class="command-desc">Moves a file to another location.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>moveto file.txt /tmp/</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>chperm</h4>
+                            <p class="command-syntax">chperm [file] [permissions]</p>
+                            <p class="command-desc">Changes file permissions (octal format).</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>chperm script.sh 755</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>file-stat</h4>
+                            <p class="command-syntax">file-stat [file] [options]</p>
+                            <p class="command-desc">Displays file statistics.</p>
+                            <div class="command-options">
+                                <strong>Options:</strong>
+                                <ul>
+                                    <li><code>-p, --permissions</code>: Show only permissions</li>
+                                    <li><code>-s, --size</code>: Show only file size</li>
+                                    <li><code>--help</code>: Display help information</li>
+                                </ul>
+                            </div>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>file-stat document.txt -s</code>
+                                <strong>Output:</strong> <code>1.2 MB</code>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="directories" class="command-section">
+                        <h3><i class="fas fa-folder"></i> Directory Operations</h3>
+                        <div class="command-card">
+                            <h4>sd</h4>
+                            <p class="command-syntax">sd [directory] [options]</p>
+                            <p class="command-desc">Scans and displays directory contents.</p>
+                            <div class="command-options">
+                                <strong>Options:</strong>
+                                <ul>
+                                    <li><code>-f, --full-path</code>: Display full paths</li>
+                                    <li><code>-r, --recursive</code>: Recursive scanning</li>
+                                    <li><code>--help</code>: Display help information</li>
+                                </ul>
+                            </div>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>sd /home/user -r</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>create dir</h4>
+                            <p class="command-syntax">create dir [directory_name]</p>
+                            <p class="command-desc">Creates a new directory.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>create dir myfolder</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>copydir</h4>
+                            <p class="command-syntax">copydir [source] [destination]</p>
+                            <p class="command-desc">Copies a directory recursively.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>copydir /home/user /backup/</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>movedir</h4>
+                            <p class="command-syntax">movedir [source] [destination]</p>
+                            <p class="command-desc">Moves a directory to another location.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>movedir /old /new/location</code>
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>deldir</h4>
+                            <p class="command-syntax">deldir [directory]</p>
+                            <p class="command-desc">Deletes a directory and all its contents.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>deldir temporary/</code>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="processes" class="command-section">
+                        <h3><i class="fas fa-tasks"></i> Process Commands</h3>
+                        <div class="command-card">
+                            <h4>stop</h4>
+                            <p class="command-syntax">stop [pid] [signal]</p>
+                            <p class="command-desc">Sends a signal to a process. Default signal is 15 (SIGTERM).</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>stop 1234 9</code>
+                                <strong>Output:</strong> Sends SIGKILL (9) to process 1234
+                            </div>
+                        </div>
+                        <div class="command-card">
+                            <h4>lp</h4>
+                            <p class="command-syntax">lp</p>
+                            <p class="command-desc">Lists all running processes with their PIDs and names.</p>
+                            <div class="command-example">
+                                <strong>Example:</strong> <code>lp</code>
+                                <strong>Output:</strong> Displays process list
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </main>
+        <footer>
+            <p>MicroOS &copy; 2026 - katkasoft</p>
+            <p>Linux is a registered trademark of Linus Torvalds</p>
+        </footer>
+    </div>
+</body>
+</html>
